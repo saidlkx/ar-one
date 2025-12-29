@@ -1,36 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PS5 AR Demo</title>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AR.js Image Tracking</title>
 
-    <script
-      type="module"
-      src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"
-    ></script>
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
 
-    <style>
-      model-viewer {
-        width: 100%;
-        height: 750px;
-        background-color: #f0f0f0;
-      }
-    </style>
-  </head>
+  <!-- AR.js -->
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar-nft.js"></script>
 
-  <body>
-    <model-viewer
-      src="xbox_one_xs.glb"
-      scale="1 1 1"
-      ar
-      ar-modes="webxr scene-viewer quick-look"
-      environment-image="neutral"
-      shadow-intensity="2"
-      shadow-softness="5"
-      loading="lazy"
-      camera-controls
-    >
-    </model-viewer>
-  </body>
+  <style>
+    body { margin: 0; overflow: hidden; }
+  </style>
+</head>
+
+<body>
+  <a-scene
+    vr-mode-ui="enabled: false"
+    embedded
+    arjs="sourceType: webcam; debugUIEnabled: false;">
+
+    <!-- Image marker -->
+    <a-nft
+      type="nft"
+      url="image"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance="0.01"
+      smoothThreshold="5">
+
+      <!-- 3D Model -->
+      <a-entity
+        gltf-model="ps5.glb"
+        scale="0.3 0.3 0.3"
+        position="0 0 0"
+        rotation="0 0 0">
+      </a-entity>
+
+    </a-nft>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
 </html>
